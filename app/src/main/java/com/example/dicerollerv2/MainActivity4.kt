@@ -10,12 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
 import java.util.*
 import kotlin.math.sqrt
 import kotlin.random.Random
 
-class MainActivity : AppCompatActivity() {
+class MainActivity4 : AppCompatActivity() {
 
     lateinit var diceImage: ImageView
     private var sensorManager: SensorManager? = null
@@ -23,10 +22,9 @@ class MainActivity : AppCompatActivity() {
     private var currentAcceleration = 0f
     private var lastAcceleration = 0f
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main4)
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
@@ -47,12 +45,12 @@ class MainActivity : AppCompatActivity() {
 
         val nextDice: Button = findViewById(R.id.btnNextDice)
         nextDice.setOnClickListener {
-            startActivity(Intent(this, MainActivity2::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         val backDice: Button = findViewById(R.id.btnBackDice)
         backDice.setOnClickListener {
-            startActivity(Intent(this, MainActivity4::class.java))
+            startActivity(Intent(this, MainActivity3::class.java))
         }
 
 
@@ -75,7 +73,6 @@ class MainActivity : AppCompatActivity() {
             acceleration = acceleration * 0.9f + delta
 
             // Display a Toast message if
-            // acceleration value is over 12
             if (acceleration > 3) {
                 rollDice()
             }
@@ -96,14 +93,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun rollDice() {
-        val randomInt = Random.nextInt(6) + 1
+        val randomInt = Random.nextInt(10) + 1
         val drawableResource = when (randomInt) {
-            1 -> R.drawable.d6_1
-            2 -> R.drawable.d6_2
-            3 -> R.drawable.d6_3
-            4 -> R.drawable.d6_4
-            5 -> R.drawable.d6_5
-            else -> R.drawable.d6_6
+            1 -> R.drawable.dice20_1
+            2 -> R.drawable.d20_2
+            3 -> R.drawable.d20_3
+            4 -> R.drawable.d20_4
+            5 -> R.drawable.d20_5
+            6 -> R.drawable.d20_6
+            7 -> R.drawable.d20_7
+            8 -> R.drawable.d20_8
+            9 -> R.drawable.d20_9
+            10 -> R.drawable.d20_10
+            11 -> R.drawable.d20_11
+            12 -> R.drawable.d20_12
+            13 -> R.drawable.d20_13
+            14 -> R.drawable.d20_14
+            15 -> R.drawable.d20_15
+            16 -> R.drawable.d20_16
+            17 -> R.drawable.d20_17
+            18 -> R.drawable.d20_18
+            19 -> R.drawable.d20_19
+            else -> R.drawable.dice20_20
         }
 
         diceImage.setImageResource(drawableResource)

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    app:layoutDescription="@xml/activity_main_scene"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,8 +19,7 @@
             android:id="@+id/diceImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            app:srcCompat="@drawable/d6_1" />
-
+            app:srcCompat="@drawable/d4_1" />
 
         <Button
             android:id="@+id/btnRoll"
@@ -56,5 +54,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
 </RelativeLayout>
