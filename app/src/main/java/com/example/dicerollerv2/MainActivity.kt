@@ -2,14 +2,18 @@ package com.example.dicerollerv2
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import java.util.*
 import kotlin.math.sqrt
@@ -22,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private var acceleration = 0f
     private var currentAcceleration = 0f
     private var lastAcceleration = 0f
+    private var modificator = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +60,29 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity4::class.java))
         }
 
+        val negativeMod5: Button = findViewById(R.id.btnMod_5)
+        negativeMod5.setOnClickListener {
+            modificator = -5
+            showToast(modificator)
+        }
+
+        val negativeMod1: Button = findViewById(R.id.btnMod_1)
+        negativeMod1.setOnClickListener {
+            modificator = -1
+            showToast(modificator)
+        }
+
+        val positivelyMod1: Button = findViewById(R.id.btnMod1)
+        positivelyMod1.setOnClickListener {
+            modificator = 1
+            showToast(modificator)
+        }
+
+        val positivelyMod5: Button = findViewById(R.id.btnMod5)
+        positivelyMod5.setOnClickListener {
+            modificator = 5
+            showToast(modificator)
+        }
 
         diceImage = findViewById(R.id.diceImage)
     }
@@ -76,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
             // Display a Toast message if
             // acceleration value is over 12
-            if (acceleration > 3) {
+            if (acceleration > 2) {
                 rollDice()
             }
         }
@@ -95,7 +123,7 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
     }
 
-    private fun rollDice() {
+    private fun rollDice(): Int {
         val randomInt = Random.nextInt(6) + 1
         val drawableResource = when (randomInt) {
             1 -> R.drawable.d6_1
@@ -107,5 +135,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         diceImage.setImageResource(drawableResource)
+
+        return randomInt
+    }
+
+    private fun showToast(text: Int) {
+
+        val toast = Toast.makeText(this, "$text", Toast.LENGTH_SHORT)
+
+        // Set the position of the toast
+        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0)
+
+        toast.show()
     }
 }

@@ -8,8 +8,10 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import java.util.*
 import kotlin.math.sqrt
 import kotlin.random.Random
@@ -21,6 +23,7 @@ class MainActivity4 : AppCompatActivity() {
     private var acceleration = 0f
     private var currentAcceleration = 0f
     private var lastAcceleration = 0f
+    private var modificator = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +56,29 @@ class MainActivity4 : AppCompatActivity() {
             startActivity(Intent(this, MainActivity3::class.java))
         }
 
+        val negativeMod5: Button = findViewById(R.id.btnMod_5)
+        negativeMod5.setOnClickListener {
+            modificator = -5
+            showToast(modificator)
+        }
+
+        val negativeMod1: Button = findViewById(R.id.btnMod_1)
+        negativeMod1.setOnClickListener {
+            modificator = -1
+            showToast(modificator)
+        }
+
+        val positivelyMod1: Button = findViewById(R.id.btnMod1)
+        positivelyMod1.setOnClickListener {
+            modificator = 1
+            showToast(modificator)
+        }
+
+        val positivelyMod5: Button = findViewById(R.id.btnMod5)
+        positivelyMod5.setOnClickListener {
+            modificator = 5
+            showToast(modificator)
+        }
 
         diceImage = findViewById(R.id.diceImage)
     }
@@ -92,7 +118,7 @@ class MainActivity4 : AppCompatActivity() {
         super.onPause()
     }
 
-    private fun rollDice() {
+    private fun rollDice(): Int {
         val randomInt = Random.nextInt(10) + 1
         val drawableResource = when (randomInt) {
             1 -> R.drawable.dice20_1
@@ -118,5 +144,17 @@ class MainActivity4 : AppCompatActivity() {
         }
 
         diceImage.setImageResource(drawableResource)
+
+        return randomInt
+    }
+
+    private fun showToast(text: Int) {
+
+        val toast = Toast.makeText(this, "$text", Toast.LENGTH_SHORT)
+
+        // Set the position of the toast
+        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0)
+
+        toast.show()
     }
 }

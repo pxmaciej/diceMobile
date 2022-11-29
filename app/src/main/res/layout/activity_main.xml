@@ -18,10 +18,10 @@
 
         <ImageView
             android:id="@+id/diceImage"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             app:srcCompat="@drawable/d6_1" />
-
 
         <Button
             android:id="@+id/btnRoll"
@@ -54,6 +54,48 @@
                 tools:ignore="RtlHardcoded" />
 
         </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <Button
+            android:id="@+id/btnMod_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/_5"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/btnMod_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/_1"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/btnMod1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/positively1"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/btnMod5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/positively5"
+            tools:ignore="RtlHardcoded" />
+
+    </LinearLayout>
 
     </LinearLayout>
 

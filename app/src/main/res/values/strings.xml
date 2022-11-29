@@ -3,4 +3,9 @@
     <string name="roll">Roll</string>
     <string name="next_dice">NEXT DICE</string>
     <string name="back_dice">BACK DICE</string>
+    <string name="_5">-5</string>
+    <string name="_1">-1</string>
+    <string name="positively1">+1</string>
+    <string name="positively5">+5</string>
+    <string name="selectedMod">Selected Modificator</string>
 </resources>
