@@ -11,8 +11,15 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import java.util.*
 import kotlin.math.sqrt
+import androidx.recyclerview.widget.RecyclerView
+import com.example.dicerollerv2.chat.ChatBox
+import com.example.dicerollerv2.chat.ChatLog
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +30,10 @@ class MainActivity : AppCompatActivity() {
     private var currentAcceleration = 0f
     private var lastAcceleration = 0f
     private var modificator = 0
+    private val db = Firebase.firestore
+
+    private lateinit var newRecyclerView: RecyclerView
+    private lateinit var newArrayList: ArrayList<ChatLog>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +54,8 @@ class MainActivity : AppCompatActivity() {
 
         val rollButton: Button = findViewById(R.id.btnRoll)
         rollButton.setOnClickListener {
-            rollDice()
+            var rollValue = rollDice()
+            populateRollList(rollValue, modificator)
         }
 
         val nextDice: Button = findViewById(R.id.btnNextDice)
@@ -81,6 +93,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         diceImage = findViewById(R.id.diceImage)
+
+        newRecyclerView = findViewById(R.id.chatBox)
+        newRecyclerView.layoutManager = LinearLayoutManager(this)
+        newRecyclerView.setHasFixedSize(true)
+        newArrayList = arrayListOf()
     }
 
     private val sensorListener: SensorEventListener = object : SensorEventListener {
@@ -94,6 +111,9 @@ class MainActivity : AppCompatActivity() {
             currentAcceleration = sqrt((x * x + y * y + z * z).toDouble()).toFloat()
             val delta: Float = currentAcceleration - lastAcceleration
             acceleration = acceleration * 0.9f + delta
+
+        //val rollButton: Button = findViewById(R.id.btRandom)
+        //val numberD: TextView = findViewById(R.id.textNumberRandom)
 
             // Display a Toast message if
             // acceleration value is over 12
@@ -137,5 +157,14 @@ class MainActivity : AppCompatActivity() {
         val toast = Toast.makeText(this, "$text", Toast.LENGTH_SHORT)
 
         toast.show()
+    }
+
+    private fun populateRollList(rollValue: Int, modifier: Int?) {
+
+        val date = Calendar.getInstance().time
+        val log = ChatLog("test","$date \n You rolled: $rollValue with modifier: $modifier",date, rollValue)
+        newArrayList.add(0,log)
+
+        newRecyclerView.adapter = ChatBox(newArrayList)
     }
 }

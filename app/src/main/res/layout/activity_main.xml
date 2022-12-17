@@ -1,67 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/wood_background"
     app:layoutDescription="@xml/activity_main_scene"
     tools:context=".MainActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:orientation="vertical"
-        android:weightSum="5">
+        android:layout_height="0dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/papyrus_background">
 
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/chatBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:padding="5dp" />
+
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/btnRoll">
 
         <ImageView
             android:id="@+id/diceImage"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnRoll"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/d6_1" />
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/btnRoll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/roll" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="5">
-
-            <Button
-                android:id="@+id/btnBackDice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/back_dice"
-                tools:ignore="RtlHardcoded" />
-
-            <Button
-                android:id="@+id/btnNextDice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/next_dice"
-                tools:ignore="RtlHardcoded" />
-
-        </LinearLayout>
+    <Button
+        android:id="@+id/btnRoll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/roll"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="5">
+        android:weightSum="5"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
+        tools:layout_editor_absoluteX="16dp">
+
+        <Button
+            android:id="@+id/btnBackDice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/back_dice"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/btnNextDice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="626dp"
+            android:text="@string/next_dice"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="RtlHardcoded" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
             android:id="@+id/btnMod_5"
@@ -94,9 +140,7 @@
             android:layout_margin="5dp"
             android:text="@string/positively5"
             tools:ignore="RtlHardcoded" />
-
     </LinearLayout>
 
-    </LinearLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
