@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private var lastAcceleration = 0f
     private var modificator = 0
     private val db = Firebase.firestore
+    private val dice = Dice()
 
     private lateinit var newRecyclerView: RecyclerView
     private lateinit var newArrayList: ArrayList<ChatLog>
@@ -137,7 +138,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun rollDice(): Int {
-        val randomInt = Random.nextInt(6) + 1
+        //val randomInt = Random.nextInt(6) + 1
+        val randomInt = dice.roll6()
+
         val drawableResource = when (randomInt) {
             1 -> R.drawable.d6_1
             2 -> R.drawable.d6_2

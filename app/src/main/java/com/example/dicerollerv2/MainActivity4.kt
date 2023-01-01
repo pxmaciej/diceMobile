@@ -23,6 +23,7 @@ class MainActivity4 : AppCompatActivity() {
     private var currentAcceleration = 0f
     private var lastAcceleration = 0f
     private var modificator = 0
+    private val dice = Dice()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,7 +115,9 @@ class MainActivity4 : AppCompatActivity() {
     }
 
     private fun rollDice(): Int {
-        val randomInt = Random.nextInt(10) + 1
+        //val randomInt = Random.nextInt(10) + 1
+        val randomInt = dice.roll20()
+
         val drawableResource = when (randomInt) {
             1 -> R.drawable.dice20_1
             2 -> R.drawable.d20_2
