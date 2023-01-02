@@ -8,4 +8,5 @@
     <string name="positively1">+1</string>
     <string name="positively5">+5</string>
     <string name="selectedMod">Selected Modificator</string>
+    <string name="clear">Clear</string>
 </resources>
