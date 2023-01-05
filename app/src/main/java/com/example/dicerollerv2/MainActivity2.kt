@@ -42,6 +42,7 @@ class MainActivity2 : AppCompatActivity() {
 
     private lateinit var newRecyclerView: RecyclerView
     private lateinit var newArrayList: ArrayList<ChatLog>
+    private val dice = Dice()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -155,7 +156,9 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     private fun rollDice(): Int {
-        val randomInt = Random.nextInt(4) + 1
+        //val randomInt = Random.nextInt(4) + 1
+        val randomInt = dice.roll4()
+
         val drawableResource = when (randomInt) {
             1 -> R.drawable.d4_1
             2 -> R.drawable.d4_2
